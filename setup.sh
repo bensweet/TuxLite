@@ -41,6 +41,9 @@ function basic_server_setup {
         service hostname start
     fi
 
+    # Set a timezone before beginning
+    dpkg-reconfigure tzdata
+
     # Basic hardening of sysctl.conf
     sed -i 's/^#net.ipv4.conf.all.accept_source_route = 0/net.ipv4.conf.all.accept_source_route = 0/' /etc/sysctl.conf
     sed -i 's/^net.ipv4.conf.all.accept_source_route = 1/net.ipv4.conf.all.accept_source_route = 0/' /etc/sysctl.conf
